@@ -9,4 +9,5 @@ class Contact
 		@notes = notes
 	end
 end
+
 #This class stores information for an individual contact.
