@@ -79,6 +79,14 @@ class CRM
 	  note = gets.chomp
 	  contact = Contact.new(first_name, last_name, email, note)
 	end
+
+	def display_all_contacts
+	    @rolodex.contacts.each do |contact|
+	      puts "#{contact.first_name} #{contact.last_name} <#{contact.email}>"
+	    end
+	    puts
+	end
+
 end	
 
 crm = CRM.new("ACME CRM")

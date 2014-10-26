@@ -11,3 +11,4 @@ class Contact
 end
 
 #This class stores information for an individual contact.
+#Note: id initialized in Rolodex.rb.
