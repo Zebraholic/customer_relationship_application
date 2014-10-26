@@ -12,19 +12,21 @@ class CRM
       @rolodex = Rolodex.new
   	end	
 
-	def print_main_menu
+  	#Displays main menu from which selections are made [1] to [7].
+	def print_main_menu	
 	  puts
 	  puts "[1] Add a new contact"
 	  puts "[2] Modify an existing contact"
 	  puts "[3] Search and display a contact"
 	  puts "[4] Delete a contact"
-	  puts "[5] Display all the contacts"
+	  puts "[5] Display all contacts"
 	  puts "[6] Display a contact's attribute"
 	  puts "[7] Exit this system"
 	  puts
 	  puts "Please enter a number from the above options: "
 	end
 
+	#Loops to display main menu options until exit [7] is selected.
 	def main_menu
 		while true
 			print_main_menu
@@ -37,14 +39,15 @@ class CRM
 		end
 	end
 
-	def call_option(user_selected)
+	#Decision tree for main menu options [1] to [7].
+	def call_option(user_selected) 
 	  case user_selected
 	  when 1 then add_new_contact		
 	  when 2 then modify_existing_contact
 	  when 3 then display_one_contact
 	  when 4 then delete_a_contact
-	  when 5 then display_all_the_contacts
-	  when 6 then disply_an_attribute
+	  when 5 then display_all_contacts
+	  when 6 then display_an_attribute
 	  when 7
 			puts "Current session ended, goodbye!"
 			return
@@ -54,7 +57,8 @@ class CRM
 		end	
 	end
 
-	def add_new_contact
+	#[1] Method for adding a new contact.
+	def add_new_contact       	
 	  print "Enter First Name: "
 	  first_name = gets.chomp
 	  print "Enter Last Name: "
@@ -68,7 +72,8 @@ class CRM
 	  @rolodex.add_contact(contact)
 	end
 
-	def modify_existing_contact
+	#[2] Method for modifying an existing contact.
+	def modify_existing_contact 	
 	  print "Change First Name: "
 	  first_name = gets.chomp
 	  print "Change Last Name: "
@@ -80,12 +85,25 @@ class CRM
 	  contact = Contact.new(first_name, last_name, email, note)
 	end
 
-	def display_all_contacts
+	#[3] Mehtod for displaying a contact.
+	def display_one_contact(contact)	
+    	puts "Name: #{contact.first_name} #{contact.last_name}"
+    	puts "Email: #{contact.email}"
+    	puts "Notes: #{contact.note}"
+    	puts "Contact ID: #{contact.id}"
+  	end
+
+  	#[4] Method for deleting a contact.
+
+	#[5] Method for displaying a list of all contacts.
+	def display_all_contacts	
 	    @rolodex.contacts.each do |contact|
-	      puts "#{contact.first_name} #{contact.last_name} <#{contact.email}>"
+	      puts "#{contact.id} #{contact.first_name} #{contact.last_name} <#{contact.email}>"
 	    end
 	    puts
 	end
+
+	#[6] Method for displaying a contact's selected attribute.
 
 end	
 
