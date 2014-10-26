@@ -1,24 +1,18 @@
 class Rolodex
-#	def initialize
-##		@contacts = []
+  def initialize
+    @contacts = []
+    @id = 10000
+  end
 
+  def contacts
+    @contacts
+  end
 
-
-
-
-
-
-
-
+  def add_contact(contact)
+    contact.id = @id
+    @contacts << contact
+    @id += 1
+  end
 end
 
-
-
-
-#As a developer, I should implement the 
-#Rolodex class as an array that accepts new contacts.
-
-#As a developer, the rolodex class should have the following 
-#methods: add, modify_contact, display_all_contacts, 
-#display_particular_contact, display_info_by_attribute
-#and delete_contact.
+#This class stores information on all our contacts.
