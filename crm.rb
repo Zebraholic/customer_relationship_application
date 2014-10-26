@@ -5,6 +5,13 @@ puts "ACME CUSTOMER RELATIONSHIP MANAGEMENT SYSTEM"
 
 class CRM
 
+	 attr_reader :name 
+
+  	def initialize(name)
+      @name = name 
+      @rolodex = Rolodex.new
+  	end	
+
 	def print_main_menu
 	  puts "[1] Add a new contact"
 	  puts "[2] Modify an existing contact"
@@ -31,7 +38,12 @@ class CRM
 	  when 4 then delete_a_contact
 	  when 5 then display_all_the_contacts
 	  when 6 then disply_an_attribute
-	  exit if user_selected == 7
+	  when 7
+			puts "Goodbye!"
+			return
+		else
+			puts "Invalid Option, please enter an option from [1] to [7]"
+			return
 	end
 
 	def add_new_contact
@@ -59,5 +71,5 @@ class CRM
 	end
 end	
 end
-crm = CRM.new
+crm = CRM.new("ACME CRM")
 crm.main_menu
