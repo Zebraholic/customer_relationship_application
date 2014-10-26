@@ -1,4 +1,7 @@
 class Rolodex
+
+  attr_reader :contacts
+
   def initialize
     @contacts = []
     @id = 10000
@@ -13,6 +16,7 @@ class Rolodex
     @contacts << contact
     @id += 1
   end
+
 end
 
-#This class stores information on all our contacts.
+#This class creates unqiue id's and stores information on all our contacts.

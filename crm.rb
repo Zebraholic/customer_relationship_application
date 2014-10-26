@@ -1,11 +1,11 @@
-require_relative "contact"
-require_relative "rolodex"
+require_relative "./contact.rb"
+require_relative "./rolodex.rb"
 puts "\e[H\e[2J"
 puts "ACME CUSTOMER RELATIONSHIP MANAGEMENT SYSTEM"
 
 class CRM
 
-	 attr_reader :name 
+	attr_reader :name 
 
   	def initialize(name)
       @name = name 
@@ -13,6 +13,7 @@ class CRM
   	end	
 
 	def print_main_menu
+	  puts
 	  puts "[1] Add a new contact"
 	  puts "[2] Modify an existing contact"
 	  puts "[3] Search and display a contact"
@@ -25,9 +26,15 @@ class CRM
 	end
 
 	def main_menu
-	  print_main_menu
-	  user_selected = gets.to_i
-	  call_option(user_selected)
+		while true
+			print_main_menu
+			user_selected = gets.chomp.to_i
+				if user_selected == 7
+				puts "Current session ended, goodbye!"
+				return
+			end
+			call_option(user_selected)
+		end
 	end
 
 	def call_option(user_selected)
@@ -39,11 +46,12 @@ class CRM
 	  when 5 then display_all_the_contacts
 	  when 6 then disply_an_attribute
 	  when 7
-			puts "Goodbye!"
+			puts "Current session ended, goodbye!"
 			return
 		else
-			puts "Invalid Option, please enter an option from [1] to [7]"
+			puts "Invalid Option, try again."
 			return
+		end	
 	end
 
 	def add_new_contact
@@ -55,7 +63,9 @@ class CRM
 	  email = gets.chomp
 	  print "Enter a Note: "
 	  note = gets.chomp
+
 	  contact = Contact.new(first_name, last_name, email, note)
+	  @rolodex.add_contact(contact)
 	end
 
 	def modify_existing_contact
@@ -70,6 +80,6 @@ class CRM
 	  contact = Contact.new(first_name, last_name, email, note)
 	end
 end	
-end
+
 crm = CRM.new("ACME CRM")
 crm.main_menu
