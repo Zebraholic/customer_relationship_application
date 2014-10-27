@@ -20,7 +20,7 @@ class CRM
 	  puts "[3] Search and display a contact"
 	  puts "[4] Delete a contact"
 	  puts "[5] Display all contacts"
-	  puts "[6] Display a contact's attribute"
+	  puts "[6] Display a list by attribute"
 	  puts "[7] Exit this system"
 	  puts
 	  puts "Please enter a number from the above options: "
@@ -47,7 +47,7 @@ class CRM
 	  when 3 then display_one_contact
 	  when 4 then delete_contact
 	  when 5 then display_all_contacts
-	  when 6 then display_an_attribute
+	  when 6 then display_by_attribute
 	  when 7
 			puts "Current session ended, goodbye!"
 			return
@@ -125,8 +125,38 @@ class CRM
 		puts
 	end
 
-	#[6] Method for displaying a contact's selected attribute.
-
+	#[6] Method for displaying contact list by a selected attribute.
+	def display_by_attribute
+		puts "Please enter desired attribute to be displayed: "
+		puts "[1] First name"
+		puts "[2] Last name"
+		puts "[3] Email"
+		puts "[4] Note"
+		puts "[5] ID" 
+		attribute = gets.chomp.to_i
+		case attribute
+		when 1
+			@rolodex.contacts.each do |contact|
+				puts "#{contact.first_name}"
+			end
+		when 2
+			@rolodex.contacts.each do |contact|
+				puts "#{contact.last_name}"
+			end
+		when 3
+			@rolodex.contacts.each do |contact|
+				puts "#{contact.email}"
+			end
+		when 4
+			@rolodex.contacts.each do |contact|
+				puts "#{contact.note}"
+			end
+		when 5
+			@rolodex.contacts.each do |contact|
+				puts "#{contact.id}"
+			end
+		end
+	end
 end	
 
 crm = CRM.new("ACME CRM")
